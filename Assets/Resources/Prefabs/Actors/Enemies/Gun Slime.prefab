@@ -597,6 +597,7 @@ GameObject:
   - component: {fileID: 5172097521205426497}
   - component: {fileID: 3132287513792761360}
   - component: {fileID: 5172097521205426557}
+  - component: {fileID: 560758545581761931}
   m_Layer: 6
   m_Name: Gun Slime
   m_TagString: Incorporeal
@@ -678,10 +679,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9099f0ed5b2ef54fabedd0a47370c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 3.5
   maxHealth: 3
   invincibilityTime: 0
+  flashOnHit: 1
   hitCol: {r: 1, g: 0, b: 0, a: 1}
-  moveSpeed: 3.5
+  spawnEffectPrefab: {fileID: 6673339757178928978, guid: 59be340e49414a94083e3ad54b69b7f6, type: 3}
+  hitEffectPrefab: {fileID: 0}
+  deathEffectPrefab: {fileID: 1355655668374932293, guid: 7268065dffcf9d6429ff0762121301f3, type: 3}
+  effectSpawn: {fileID: 9045448706714629383}
+  hitSound: 0
   targetLayers:
     serializedVersion: 2
     m_Bits: 128
@@ -691,18 +698,112 @@ MonoBehaviour:
   weaponArm: {fileID: 79287120165055513}
   weaponHand: {fileID: 79287120131641589}
   weaponScale: 0.75
+  collisionDamage: 1
+  collisionCooldown: 0.5
   minTargetRange: 4
   maxTargetRange: 6
+  firstAttackDelay: 1
   attackRange: 10
   maxAttackRange: 0
-  collisionDamage: 1
-  spawnEffectPrefab: {fileID: 6673339757178928978, guid: 59be340e49414a94083e3ad54b69b7f6, type: 3}
-  hitEffectPrefab: {fileID: 0}
-  deathEffectPrefab: {fileID: 1355655668374932293, guid: 7268065dffcf9d6429ff0762121301f3, type: 3}
-  effectSpawn: {fileID: 9045448706714629383}
   minColorBrightness: 100
   alpha: 150
   trackPlayer: 0
+--- !u!82 &560758545581761931
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5172097521205426556}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5522523106517466729
 GameObject:
   m_ObjectHideFlags: 0
