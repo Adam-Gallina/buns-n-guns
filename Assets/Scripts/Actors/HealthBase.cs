@@ -117,7 +117,7 @@ public class HealthBase : MovementBase
         SetAnimationState(true);
 
         if (spawnEffectPrefab)
-            SpawnEffect(spawnEffectPrefab, effectSpawn.position).SetCallback(OnSpawnComplete);
+            DoSpawnEffect(effectSpawn.position).SetCallback(OnSpawnComplete);
         else
             OnSpawnComplete();
     }
@@ -134,7 +134,7 @@ public class HealthBase : MovementBase
             StartCoroutine(FlashCol(hitCol, GameController.hitColDuration));
 
         if (hitEffectPrefab)
-            SpawnEffect(hitEffectPrefab, hitPos);
+            DoHitEffect(hitPos);
     }
 
     protected virtual void OnZeroHealth()
@@ -146,7 +146,8 @@ public class HealthBase : MovementBase
             SetAnimationState(true);
             image.gameObject.SetActive(false);
 
-            SpawnEffect(deathEffectPrefab, effectSpawn.position).SetCallback(Death);
+            if (deathEffectPrefab)
+                DoDeathEffect(effectSpawn.position).SetCallback(Death);
         }
         else
         {
@@ -168,11 +169,26 @@ public class HealthBase : MovementBase
         ResetSpriteColors();
     }
 
-    protected virtual EffectBase SpawnEffect(GameObject effectPrefab, Vector3 targetPos)
+    protected EffectBase SpawnEffect(GameObject effectPrefab, Vector3 targetPos)
     {
         GameObject effect = Instantiate(effectPrefab);
         effect.transform.position = targetPos;
         return effect.GetComponent<EffectBase>();
+    }
+
+    protected virtual EffectBase DoSpawnEffect(Vector2 targetPos)
+    {
+        return SpawnEffect(spawnEffectPrefab, targetPos);
+    }
+
+    protected virtual EffectBase DoDeathEffect(Vector2 targetPos)
+    {
+        return SpawnEffect(deathEffectPrefab, targetPos);
+    }
+
+    protected virtual EffectBase DoHitEffect(Vector2 targetPos)
+    {
+        return SpawnEffect(hitEffectPrefab, targetPos);
     }
     #endregion
 }

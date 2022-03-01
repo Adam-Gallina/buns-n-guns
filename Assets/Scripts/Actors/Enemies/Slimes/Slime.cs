@@ -36,4 +36,18 @@ public class Slime : EnemyBase
 
         base.OnSpawnStart();
     }
+
+    protected override EffectBase DoSpawnEffect(Vector2 targetPos)
+    {
+        EffectBase effect = base.DoSpawnEffect(targetPos);
+        effect.SetEffectColor(spriteCol);
+        return effect;
+    }
+
+    protected override EffectBase DoDeathEffect(Vector2 targetPos)
+    {
+        EffectBase effect = base.DoDeathEffect(targetPos);
+        effect.SetEffectColor(spriteCol);
+        return effect;
+    }
 }
