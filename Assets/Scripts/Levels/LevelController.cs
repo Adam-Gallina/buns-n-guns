@@ -9,6 +9,8 @@ public abstract class LevelController : MonoBehaviour
     [HideInInspector] public PlayerController playerCtr;
     [HideInInspector] public Inventory playerInv;
 
+    public GameObject DEBUG_bossKey;
+
     [Header("Level")]
     [SerializeField] protected GameObject[] startingInventory;
     protected float startingTime;
@@ -96,6 +98,9 @@ public abstract class LevelController : MonoBehaviour
         {
             Debug.LogWarning("playerHealthBar is not set");
         }
+
+        if (GameController.instance.DEBUG_startWithBossKey)
+            playerInv.AddItem(DEBUG_bossKey);
     }
 
     public void UpdateCurrRoom(RoomBase newRoom)

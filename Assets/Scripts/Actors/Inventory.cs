@@ -24,10 +24,23 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] private List<InventoryItem> inventory = new List<InventoryItem>();
 
+
+    public void AddItem(GameObject newItem)
+    {
+        if (newItem.GetComponent<InventoryItem>())
+        {
+            AddItem(newItem.GetComponent<InventoryItem>());
+        }
+        else
+        {
+            Debug.LogWarning($"Trying to add {newItem.name} to inventory, but it does not have an InventoryItem component");
+        }
+    }
     public void AddItem(InventoryItem newItem)
     {
         inventory.Add(newItem);
     }
+
 
     public void AddItems(InventoryItem[] newItems)
     {

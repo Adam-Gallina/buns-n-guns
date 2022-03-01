@@ -36,7 +36,6 @@ public class GameController : MonoBehaviour
     public bool DEBUG_spawnEnemies = true;
     public bool DEBUG_spawnBosses = true;
     public bool DEBUG_startWithBossKey = false;
-    public GameObject DEBUG_bossKey;
 
     [Header("Player")]
     [SerializeField] private GameObject playerPrefab;
@@ -106,9 +105,6 @@ public class GameController : MonoBehaviour
     private void StartLevel()
     {
         LevelController.instance.StartLevel(playerPrefab, playerGunPrefab);
-
-        if (DEBUG_startWithBossKey)
-            LevelController.instance.playerInv.AddItem(DEBUG_bossKey.GetComponent<InventoryItem>());
     }
 
     private IEnumerator LoadScene(int targetScene)
