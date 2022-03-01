@@ -28,7 +28,7 @@ public class Ring : Spread
         spreadAngle = 360 / shotCount;
     }
 
-    protected override void Fire()
+    protected override void FireBullet()
     {
         float startRotation = Random.Range(0, spreadAngle);
 

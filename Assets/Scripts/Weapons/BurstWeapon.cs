@@ -19,15 +19,14 @@ public class Burst : FiringMode
     public int burstCount;
     public float burstShotDelay;
 
-    public override float StartFire()
+    public override bool StartShooting()
     {
-        if (requireMouseUp && !mouseUp && firingComplete)
-        {
-            weapon.StartCoroutine(FireBurst());
-            return fireDelay + (burstCount * burstShotDelay);
-        }
+        if (!CanShoot())
+            return false;
 
-        return 0;
+        weapon.StartCoroutine(FireBurst());
+        nextShot = Time.time + burstShotDelay * burstCount + fireDelay;
+        return true;
     }
 
     public virtual IEnumerator FireBurst()
@@ -38,7 +37,7 @@ public class Burst : FiringMode
         while (totalShots > 0)
         {
 
-            Fire();
+            FireBullet();
             totalShots--;
             yield return new WaitForSeconds(burstShotDelay);
         }

@@ -18,15 +18,14 @@ public class DelayedShot : FiringMode
 {
     [SerializeField] protected float shotDelay;
 
-    public override float StartFire()
+    public override bool StartShooting()
     {
-        if (requireMouseUp && !mouseUp && firingComplete)
-        {
-            weapon.StartCoroutine(FireDelayed());
-            return shotDelay + fireDelay;
-        }
+        if (!CanShoot())
+            return false;
 
-        return 0;
+        weapon.StartCoroutine(FireDelayed());
+        nextShot = Time.time + shotDelay + fireDelay;
+        return true;
     }
 
     protected virtual IEnumerator FireDelayed()
@@ -36,7 +35,7 @@ public class DelayedShot : FiringMode
 
         yield return new WaitForSeconds(shotDelay);
 
-        Fire();
+        FireBullet();
 
         firingComplete = true;
         weapon.SetRotationLockState(false);

@@ -24,7 +24,7 @@ public class Automatic : DelayedShot
 
         while (!firingComplete)
         {
-            Fire();
+            FireBullet();
             yield return new WaitForSeconds(fireDelay);
         }
 

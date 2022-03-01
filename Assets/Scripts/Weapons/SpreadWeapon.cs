@@ -24,7 +24,7 @@ public class Spread : Single
         spreadAngle = bulletSpread * 2 / shotCount;
     }
 
-    protected override void Fire()
+    protected override void FireBullet()
     {
         firingComplete = false;
 

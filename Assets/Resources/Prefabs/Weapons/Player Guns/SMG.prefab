@@ -54,6 +54,7 @@ MonoBehaviour:
     bulletSpread: 15
     fireDelay: 0.75
     requireMouseUp: 0
+    nextShot: 0
     burstCount: 3
     burstShotDelay: 0.075
 --- !u!1 &4104760741683467811

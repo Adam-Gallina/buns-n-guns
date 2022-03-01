@@ -9,7 +9,6 @@ public abstract class WeaponBase : MonoBehaviour
 
     protected int targetLayers;
     protected GameObject controller;
-    protected float nextShot;
 
     [Header("Image")]
     public Color bulletCol = Color.white;
@@ -121,20 +120,17 @@ public abstract class WeaponBase : MonoBehaviour
     {
         if (firingMode < 0 || firingMode >= firingModes.Length)
         {
-            Debug.LogWarning(controller.name + " is trying to fire " + name + " with incorrect mode " + firingMode + ". Defaulting to mode 0 (" + firingModes[0] + ")");
+            Debug.LogWarning($"{controller.name} is trying to fire {name} with incorrect mode {firingMode}. Defaulting to mode 0 ({firingModes[0]})");
             firingMode = 0;
         }
 
-        if (Time.time >= nextShot && firingModes[lastMode].Completed())
-        {
-            nextShot = Time.time + firingModes[firingMode].StartFire();
-            lastMode = firingMode;
-        }
+        firingModes[firingMode].StartShooting();
+        lastMode = firingMode;
     }
 
     public virtual void StopFire()
     {
-        nextShot += firingModes[lastMode].StopFire();
+        firingModes[lastMode].StopShooting();
     }
 
     public GameObject SetupNewBullet(GameObject prefab)
@@ -199,6 +195,7 @@ public abstract class FiringMode
     protected bool firingComplete = true;
     protected bool mouseUp = false;
     public bool requireMouseUp = false;
+    public float nextShot = 0;
 
     protected WeaponBase weapon;
     protected Transform firePoint;
@@ -219,30 +216,37 @@ public abstract class FiringMode
 
     }
 
-
-    public virtual float StartFire()
+    protected virtual bool CanShoot()
     {
-        if (requireMouseUp && !mouseUp && firingComplete)
-            return 0;
+        return (!requireMouseUp || mouseUp)     // Player let go of fire button
+            && firingComplete                   // Firing animation has finished
+            && Time.time >= nextShot;           // Cooldown has passed
+    }
 
-        Fire();
+    public virtual bool StartShooting()
+    {
+        if (!CanShoot())
+            return false;
+
+        FireBullet();
+        nextShot = Time.time + fireDelay;
 
         mouseUp = false;
 
-        return fireDelay;
+        return true;
     }
     
-    public virtual float StopFire()
+    public virtual bool StopShooting()
     {
         firingComplete = true;
         mouseUp = true;
 
-        return 0;
+        return true;
     }
 
 
     // How to fire the bullets
-    protected virtual void Fire()
+    protected virtual void FireBullet()
     {
         SpawnBullet(bulletPrefab, firePoint.right, bulletSpread);
     }
