@@ -1,0 +1,53 @@
+// Objects
+[-100, -75)
+	Background Tilemap: -100
+
+[-75, -50)
+	Wall Tilemap: -75
+	Buttons/Levers: -60
+	Doors: -50, -49
+
+[-50, -20)
+	Bosses
+		Boss Slime: -45, -44
+	Enemies
+		Slime: -17, -16
+		Gun Slime Arm: -20, -19, -18
+
+	Enemy Guns [-30, -20)	
+		Pistol -25
+
+[-20, -10)
+	Characters
+		Torso: -16
+		Head: -17
+		L Leg: -20
+		R Leg: -19
+		L Arm: -18
+		R Arm: -11
+
+	Character Guns [-15, -12)
+		Pistol: -13
+
+[-10, 10)
+	Player
+		Torso: -6
+		Head: -7
+		L Leg: -10
+		R Leg: -9
+		L Arm: -8
+		R Arm: 9
+
+	Player Guns [-5, 5)
+		Pistol: 0
+
+[50, 60)
+	Bullets
+		Basic bullet: 55
+
+
+// Icons
+Items: -100
+Boss: -50
+Player: 0
+Locks: 100
