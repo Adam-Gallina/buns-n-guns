@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnRoom : RoomBase
 {
     public bool DEBUG_useExistingPlayer = false;
-    [SerializeField] protected Vector2 playerSpawnPos;
+    public Vector2 playerSpawnPos;
 
     protected override void OnDrawGizmos()
     {

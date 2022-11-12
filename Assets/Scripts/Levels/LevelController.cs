@@ -62,7 +62,7 @@ public abstract class LevelController : MonoBehaviour
 
     public virtual void SpawnPlayer(GameObject playerPrefab, GameObject playerGunPrefab)
     {
-        SpawnRoom spawn = GameObject.Find("Rooms")?.GetComponentInChildren<SpawnRoom>();
+        SpawnRoom spawn = RoomGeneration.Instance.GetComponentInChildren<SpawnRoom>();
 
         if (!spawn)
         {

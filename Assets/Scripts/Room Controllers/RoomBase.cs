@@ -5,10 +5,10 @@ public class RoomBase : MonoBehaviour
 {
     protected bool playerEntered = false;
     protected bool playerInRoom = false;
-    public bool clearedRoom = false;
+    [HideInInspector] public bool clearedRoom = false;
 
     [Header("Setup")]
-    [SerializeField] protected Vector2 roomDimensions = new Vector2(4, 4);
+    public Vector2 roomDimensions = new Vector2(4, 4);
     protected Vector2 roomMin;
     protected Vector2 roomMax;
     protected SmokeCloud linkedSmoke;
